@@ -87,7 +87,7 @@ main {
 
 .tab.active {
   background-color: white;
-  border-color: #blue;
+  border-color: blue;
   border-bottom: 2px solid blue;
   font-weight: bold;
 }
