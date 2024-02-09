@@ -100,3 +100,17 @@ main {
 .hidden {
   display: none;
 }
+
+#numeroActual {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#numeroMostrado {
+  font-size: 2em;
+  margin: 10px 0;
+}
+
+.celda.marcado {
+  background-color: #ff0;
+}

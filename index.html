@@ -37,14 +37,22 @@
           <button type="submit">Iniciar Juego</button>
         </form>
       </section>
+
+      <section id="numeroActual">
+        <h2>Número Actual:</h2>
+        <p id="numeroMostrado">-</p>
+        <button id="sacarNumero">Sacar Número</button>
+      </section>
+
       <div id="controlesCarton">
         <nav class="tabs">
-          <button class="tab" onclick="mostrarCarton(0)">Jugador 1</button>
-          <button class="tab" onclick="mostrarCarton(1)">Jugador 2</button>
-          <button class="tab" onclick="mostrarCarton(2)">Jugador 3</button>
-          <button class="tab" onclick="mostrarCarton(3)">Jugador 4</button>
+          <button class="tab">Jugador 1</button>
+          <button class="tab">Jugador 2</button>
+          <button class="tab">Jugador 3</button>
+          <button class="tab">Jugador 4</button>
         </nav>
       </div>
+
       <section id="juego" class="hidden"></section>
     </main>
     <script src="script.js"></script>
