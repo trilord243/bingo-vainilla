@@ -163,6 +163,7 @@ window.onload = function () {
 
   function verificarPuntos() {
     let puntajesHTML = "";
+
     jugadores.forEach((jugador, index) => {
       const matriz = cartones[index].matriz;
       let puntos = 0;
@@ -195,11 +196,37 @@ window.onload = function () {
 
       // Acumular los puntajes en HTML
       puntajesHTML += `<div>Jugador ${jugador}: ${puntos} puntos</div>`;
+
+      let puntajejugador = {
+        [jugador]: puntos,
+      };
+
+      if (matriz.length === 3) {
+        mostrarGanor(puntajejugador, 17);
+      } else if (matriz.length === 4) {
+        mostrarGanor(puntajejugador, 19);
+      } else if (matriz.length === 5) {
+        mostrarGanor(puntajejugador, 21);
+      }
     });
 
     // Actualizar el DOM con los puntajes
     const puntajesDiv = document.getElementById("puntajes");
     puntajesDiv.innerHTML = puntajesHTML;
+  }
+
+  function mostrarGanor(puntajejugador, matrix) {
+    for (const [key, value] of Object.entries(puntajejugador)) {
+      if (value === matrix) {
+        console.log(`Gano el jugador ${key}`);
+      }
+    }
+  }
+
+  function guardarLeaderBoard(objeto) {
+    localStorage.clear();
+    const leaderBoard = JSON.stringify(objeto);
+    localStorage.setItem("leaderBoard", leaderBoard);
   }
 
   function mostrarNumeroAleatorio() {
