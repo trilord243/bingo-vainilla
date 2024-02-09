@@ -33,28 +33,25 @@ main {
 }
 
 .carton {
-  border: 1px solid #ddd;
   margin: 10px;
-  padding: 5px;
+  border: 1px solid #ddd;
 }
 
 .grid-carton {
   display: grid;
+  gap: 5px; /* Ajusta el espacio entre las celdas de la grilla */
 }
 
 .carton[data-tamano="3"] .grid-carton {
   grid-template-columns: repeat(3, 60px);
-  grid-gap: 5px;
 }
 
 .carton[data-tamano="4"] .grid-carton {
   grid-template-columns: repeat(4, 60px);
-  grid-gap: 5px;
 }
 
 .carton[data-tamano="5"] .grid-carton {
   grid-template-columns: repeat(5, 60px);
-  grid-gap: 5px;
 }
 
 .celda {
