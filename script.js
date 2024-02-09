@@ -1,66 +1,73 @@
-//Captura loos nombres qlq del formularop
-document
-  .getElementById("formularioInicial")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+  let cartones = [];
+  let jugadores = [];
 
-    // Capturar el tamaño del cartón y los nombres de los jugadores
-    const tamanoCarton = parseInt(
-      document.getElementById("tamanoCarton").value
-    );
-    const jugadores = [
-      document.getElementById("jugador1").value,
-      document.getElementById("jugador2").value,
-      document.getElementById("jugador3").value,
-      document.getElementById("jugador4").value,
-    ];
+  document
+    .getElementById("formularioInicial")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      const tamanoCarton = parseInt(
+        document.getElementById("tamanoCarton").value
+      );
+      jugadores = [
+        document.getElementById("jugador1").value,
+        document.getElementById("jugador2").value,
+        document.getElementById("jugador3").value,
+        document.getElementById("jugador4").value,
+      ];
+      iniciarJuego(tamanoCarton, jugadores);
+    });
+  //generar los cartones
 
-    iniciarJuego(tamanoCarton, jugadores);
-  });
-
-//generar los cartones
-
-function generarCarton(tamano) {
-  const numerosUsados = new Set();
-  const carton = [];
-  for (let i = 0; i < tamano; i++) {
-    const fila = [];
-    for (let j = 0; j < tamano; j++) {
-      let numero;
-      do {
-        numero = Math.floor(Math.random() * 50) + 1;
-      } while (numerosUsados.has(numero));
-      numerosUsados.add(numero);
-      fila.push(numero);
+  function generarCarton(tamano) {
+    const numerosUsados = new Set();
+    const carton = [];
+    for (let i = 0; i < tamano; i++) {
+      const fila = [];
+      for (let j = 0; j < tamano; j++) {
+        let numero;
+        do {
+          numero = Math.floor(Math.random() * 50) + 1;
+        } while (numerosUsados.has(numero));
+        numerosUsados.add(numero);
+        fila.push(numero);
+      }
+      carton.push(fila);
     }
-    carton.push(fila);
+    return carton;
   }
-  return carton;
-}
 
-//Mostrarlo en el juego
-
-function iniciarJuego(tamanoCarton, jugadores) {
-  document.getElementById("configuracion").style.display = "none";
-  const areaJuego = document.getElementById("juego");
-  areaJuego.innerHTML = ""; // Limpiar el área de juego
-  areaJuego.style.display = "flex";
-
-  jugadores.forEach((jugador) => {
-    const carton = generarCarton(tamanoCarton);
-    const contenedorCarton = document.createElement("div");
-    contenedorCarton.classList.add("carton");
-    contenedorCarton.setAttribute("data-tamano", tamanoCarton);
-    let htmlCarton = `<h3>${jugador}</h3><div class="grid-carton">`;
-
-    carton.forEach((fila) => {
+  //Mostrarlo en el juego
+  function mostrarCarton(index) {
+    const areaJuego = document.getElementById("juego");
+    if (!areaJuego) {
+      console.error("El elemento con id 'juego' no existe.");
+      return;
+    }
+    const tabs = document.querySelectorAll(".tab");
+    tabs.forEach((tab) => tab.classList.remove("active"));
+    tabs[index].classList.add("active");
+    let htmlCarton = `<div class="grid-carton">`;
+    cartones[index].forEach((fila) => {
       fila.forEach((numero) => {
         htmlCarton += `<div class="celda">${numero}</div>`;
       });
     });
-
     htmlCarton += `</div>`;
-    contenedorCarton.innerHTML = htmlCarton;
-    areaJuego.appendChild(contenedorCarton);
-  });
-}
+    areaJuego.innerHTML = htmlCarton;
+  }
+
+  function iniciarJuego(tamanoCarton, jugadores) {
+    document.getElementById("configuracion").style.display = "none";
+    document.getElementById("controlesCarton").style.display = "block";
+    cartones = jugadores.map(() => generarCarton(tamanoCarton));
+    const tabs = document.querySelectorAll(".tab");
+    tabs.forEach((tab, index) => {
+      tab.textContent = jugadores[index];
+      tab.onclick = () => mostrarCarton(index);
+    });
+    mostrarCarton(0);
+  }
+
+  document.getElementById("controlesCarton").style.display = "none";
+});
