@@ -162,42 +162,44 @@ window.onload = function () {
   }
 
   function verificarPuntos() {
+    let puntajesHTML = "";
     jugadores.forEach((jugador, index) => {
       const matriz = cartones[index].matriz;
       let puntos = 0;
       let cartonLleno = true;
 
+      // Verificación de líneas horizontales y cartón lleno
       matriz.forEach((fila) => {
-        const lineaCompleta = fila.every((celda) => celda.marcado);
-        if (lineaCompleta) puntos += 1;
-        cartonLleno = cartonLleno && lineaCompleta;
+        if (fila.every((celda) => celda.marcado)) puntos++;
+        cartonLleno = cartonLleno && fila.every((celda) => celda.marcado);
       });
 
-      for (let columna = 0; columna < matriz[0].length; columna++) {
-        let columnaCompleta = true;
-        for (let fila = 0; fila < matriz.length; fila++) {
-          if (!matriz[fila][columna].marcado) {
-            columnaCompleta = false;
-            break;
-          }
-        }
-        if (columnaCompleta) puntos += 1;
+      // Verificación de líneas verticales
+      for (let i = 0; i < matriz.length; i++) {
+        if (matriz.map((fila) => fila[i]).every((celda) => celda.marcado))
+          puntos++;
       }
 
-      let diagonalPrincipalCompleta = true;
-      let diagonalSecundariaCompleta = true;
-      for (let i = 0; i < matriz.length; i++) {
-        if (!matriz[i][i].marcado) diagonalPrincipalCompleta = false;
-        if (!matriz[i][matriz.length - 1 - i].marcado)
-          diagonalSecundariaCompleta = false;
-      }
+      // Verificación de diagonales
+      let diagonalPrincipalCompleta = matriz.every(
+        (fila, i) => fila[i].marcado
+      );
+      let diagonalSecundariaCompleta = matriz.every(
+        (fila, i) => fila[matriz.length - 1 - i].marcado
+      );
+
       if (diagonalPrincipalCompleta) puntos += 3;
       if (diagonalSecundariaCompleta) puntos += 3;
 
       if (cartonLleno) puntos += 5;
 
-      console.log(`Jugador ${index + 1} (${jugador}): ${puntos} puntos`);
+      // Acumular los puntajes en HTML
+      puntajesHTML += `<div>Jugador ${jugador}: ${puntos} puntos</div>`;
     });
+
+    // Actualizar el DOM con los puntajes
+    const puntajesDiv = document.getElementById("puntajes");
+    puntajesDiv.innerHTML = puntajesHTML;
   }
 
   function mostrarNumeroAleatorio() {
