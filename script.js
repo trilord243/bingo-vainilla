@@ -23,7 +23,7 @@ window.onload = function () {
   function generarCarton(tamano, indexCarton) {
     const numerosUsados = new Set();
     let cartonHTML = `<div class="carton" data-tamano="${tamano}" data-index="${indexCarton}"><div class="grid-carton">`;
-    let cartonMatriz = []; // Nueva matriz para almacenar los números
+    let cartonMatriz = [];
 
     for (let i = 0; i < tamano; i++) {
       let fila = [];
@@ -33,7 +33,7 @@ window.onload = function () {
           numero = Math.floor(Math.random() * 50) + 1;
         } while (numerosUsados.has(numero));
         numerosUsados.add(numero);
-        fila.push({ numero: numero, marcado: false }); // Guarda el número y si está marcado
+        fila.push({ numero: numero, marcado: false });
         cartonHTML += `<div class="celda" data-numero="${numero}">${numero}</div>`;
       }
       cartonMatriz.push(fila);
@@ -48,7 +48,19 @@ window.onload = function () {
       return;
     }
 
-    areaJuego.innerHTML = cartones[index].html;
+    const carton = cartones[index];
+    let cartonHTML = `<div class="carton" data-tamano="${carton.matriz.length}" data-index="${index}"><div class="grid-carton">`;
+
+    carton.matriz.forEach((fila) => {
+      fila.forEach((celda) => {
+        cartonHTML += `<div class="celda${
+          celda.marcado ? " marcado" : ""
+        }" data-numero="${celda.numero}">${celda.numero}</div>`;
+      });
+    });
+
+    cartonHTML += `</div></div>`;
+    areaJuego.innerHTML = cartonHTML;
     updateActiveTab(index);
   }
 
@@ -63,7 +75,6 @@ window.onload = function () {
       matricesCartones.push(carton.matriz);
     });
 
-    // Construir la estructura de datos completa de los cartones que incluye el HTML y la matriz
     cartones = cartonesHTML.map((html, index) => {
       return { html: html, matriz: matricesCartones[index] };
     });
@@ -144,18 +155,17 @@ window.onload = function () {
         fila.forEach((celda, indexCelda) => {
           // Si el número coincide y no ha sido marcado
           if (celda.numero === numero && !celda.marcado) {
-            // Marca el número como marcado
+            // Marca el número como marcado en el estado
             celda.marcado = true;
-            // Encuentra la celda correspondiente en el HTML y actualiza su estilo
-            const celdaHTML = document.querySelector(
-              `.carton[data-index="${indexCarton}"] .celda[data-numero="${numero}"]`
-            );
-            if (celdaHTML) {
-              celdaHTML.classList.add("marcado"); // Asegúrate de definir el estilo 'marcado' en tu CSS
-            }
           }
         });
       });
+    });
+
+    // Actualizar el DOM para el cartón actualmente visible
+    const celdas = document.querySelectorAll(`.celda[data-numero="${numero}"]`);
+    celdas.forEach((celda) => {
+      celda.classList.add("marcado");
     });
   }
 
