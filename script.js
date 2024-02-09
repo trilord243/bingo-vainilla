@@ -68,7 +68,6 @@ window.onload = function () {
     let cartonesHTML = [];
     let matricesCartones = [];
 
-    // Generar cartón para cada jugador con un índice único
     jugadores.forEach((jugador, index) => {
       let carton = generarCarton(tamanoCarton, index);
       cartonesHTML.push(carton.html);
@@ -79,20 +78,17 @@ window.onload = function () {
       return { html: html, matriz: matricesCartones[index] };
     });
 
-    // Ocultar la configuración inicial y mostrar los controles del cartón
     document.getElementById("configuracion").style.display = "none";
     controlesCarton.style.display = "flex";
 
-    // Adjuntar event listeners a los tabs de los jugadores
     attachTabEventListeners();
-    // Mostrar el primer cartón y establecer el tab activo
+
     mostrarCarton(0);
     updateActiveTab(0);
-    // Mostrar la sección del número actual
+
     document.getElementById("numeroActual").style.display = "block";
   }
 
-  // La función 'generarCarton' modificada para aceptar 'indexCarton'
   function generarCarton(tamano, indexCarton) {
     const numerosUsados = new Set();
     let cartonHTML = `<div class="carton" data-tamano="${tamano}" data-index="${indexCarton}"><div class="grid-carton">`;
@@ -106,7 +102,7 @@ window.onload = function () {
           numero = Math.floor(Math.random() * 50) + 1;
         } while (numerosUsados.has(numero));
         numerosUsados.add(numero);
-        fila.push({ numero: numero, marcado: false }); // Guarda el número y si está marcado
+        fila.push({ numero: numero, marcado: false });
         cartonHTML += `<div class="celda" data-numero="${numero}">${numero}</div>`;
       }
       cartonMatriz.push(fila);
@@ -149,33 +145,68 @@ window.onload = function () {
     });
   }
   function marcarNumeroEnCarton(numero) {
-    // Itera sobre cada cartón y cada número en la matriz del cartón
     cartones.forEach((carton, indexCarton) => {
       carton.matriz.forEach((fila, indexFila) => {
         fila.forEach((celda, indexCelda) => {
-          // Si el número coincide y no ha sido marcado
           if (celda.numero === numero && !celda.marcado) {
-            // Marca el número como marcado en el estado
             celda.marcado = true;
           }
         });
       });
     });
 
-    // Actualizar el DOM para el cartón actualmente visible
     const celdas = document.querySelectorAll(`.celda[data-numero="${numero}"]`);
     celdas.forEach((celda) => {
       celda.classList.add("marcado");
     });
   }
 
+  function verificarPuntos() {
+    jugadores.forEach((jugador, index) => {
+      const matriz = cartones[index].matriz;
+      let puntos = 0;
+      let cartonLleno = true;
+
+      matriz.forEach((fila) => {
+        const lineaCompleta = fila.every((celda) => celda.marcado);
+        if (lineaCompleta) puntos += 1;
+        cartonLleno = cartonLleno && lineaCompleta;
+      });
+
+      for (let columna = 0; columna < matriz[0].length; columna++) {
+        let columnaCompleta = true;
+        for (let fila = 0; fila < matriz.length; fila++) {
+          if (!matriz[fila][columna].marcado) {
+            columnaCompleta = false;
+            break;
+          }
+        }
+        if (columnaCompleta) puntos += 1;
+      }
+
+      let diagonalPrincipalCompleta = true;
+      let diagonalSecundariaCompleta = true;
+      for (let i = 0; i < matriz.length; i++) {
+        if (!matriz[i][i].marcado) diagonalPrincipalCompleta = false;
+        if (!matriz[i][matriz.length - 1 - i].marcado)
+          diagonalSecundariaCompleta = false;
+      }
+      if (diagonalPrincipalCompleta) puntos += 3;
+      if (diagonalSecundariaCompleta) puntos += 3;
+
+      if (cartonLleno) puntos += 5;
+
+      console.log(`Jugador ${index + 1} (${jugador}): ${puntos} puntos`);
+    });
+  }
+
   function mostrarNumeroAleatorio() {
     const numero = generarNumeroAleatorio();
     document.getElementById("numeroMostrado").textContent = numero;
-    // Marcar el número en los cartones
+
     marcarNumeroEnCarton(numero);
+    verificarPuntos();
   }
 
-  console.log("hola");
   controlesCarton.style.display = "none";
 };
