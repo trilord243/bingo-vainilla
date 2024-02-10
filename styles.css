@@ -322,5 +322,15 @@ aside#puntajes {
 #sonidoContenedor {
   position: fixed;
   left: 0;
-  top: 0;
+  bottom: 0;
+}
+
+#gifTrompeta {
+  position: fixed !important;
+  display: none;
+  top: 50% !important;
+  left: 0 !important;
+  transform: translateY(-50%) !important;
+  max-height: 10vh !important;
+  width: auto !important;
 }

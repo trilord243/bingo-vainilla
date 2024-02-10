@@ -306,12 +306,15 @@ function mostrarGanador(nombreJugador) {
 }
 document.getElementById("toggleSonido").addEventListener("click", function () {
   var audio = document.getElementById("miAudio");
+  var gif = document.getElementById("gifTrompeta"); // Obtiene el GIF
 
   if (audio.paused) {
     audio.play();
+    gif.style.display = "block";
     this.textContent = "🔇 Mute";
   } else {
     audio.pause();
+    gif.style.display = "none";
     this.textContent = "🔊 Habilitar Sonido";
   }
 });
