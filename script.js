@@ -255,24 +255,30 @@ window.onload = function () {
 };
 
 function mostrarPuntajes() {
-  // Verificar si hay datos de puntajes en localStorage
+  const divPuntajes = document.getElementById("puntajes");
   const puntajesGuardados = localStorage.getItem("leaderBoard");
+
+  // Título por defecto para la tabla de puntajes
+  let tituloTabla = "<h2>Tabla de Puntuaciones</h2>";
+
   if (puntajesGuardados) {
     // Convertir la cadena de localStorage a un objeto
     const puntajes = JSON.parse(puntajesGuardados);
 
     // Crear el HTML para los puntajes
     const listaPuntajes = Object.entries(puntajes)
-      .map(([jugador, puntaje]) => {
-        return `<p>${jugador}: ${puntaje} puntos</p>`;
-      })
+      .map(([jugador, puntaje]) => `<p>${jugador}: ${puntaje} puntos</p>`)
       .join("");
 
-    // Actualizar el DOM
-    const divPuntajes = document.getElementById("puntajes");
-    divPuntajes.innerHTML = `<h2>Puntajes Anterior partida</h2>${listaPuntajes}`;
+    // Actualizar el DOM con los puntajes
+    divPuntajes.innerHTML = tituloTabla + listaPuntajes;
+  } else {
+    // Mostrar el título y un mensaje indicando que no hay puntajes guardados
+    divPuntajes.innerHTML =
+      tituloTabla + "<p>No hay puntuaciones anteriores.</p>";
   }
 }
+
 function encontrarGanador(puntajes) {
   let maxPuntaje = -Infinity;
   let ganadores = [];
