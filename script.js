@@ -1,6 +1,7 @@
 window.onload = function () {
   let cartones = [];
   let jugadores = [];
+  let puntajejugador = {};
 
   const formularioInicial = document.getElementById("formularioInicial");
   const tamanoCartonSelect = document.getElementById("tamanoCarton");
@@ -197,9 +198,7 @@ window.onload = function () {
       // Acumular los puntajes en HTML
       puntajesHTML += `<div>Jugador ${jugador}: ${puntos} puntos</div>`;
 
-      let puntajejugador = {
-        [jugador]: puntos,
-      };
+      puntajejugador[jugador] = puntos;
 
       if (matriz.length === 3) {
         mostrarGanor(puntajejugador, 17);
@@ -219,6 +218,7 @@ window.onload = function () {
     for (const [key, value] of Object.entries(puntajejugador)) {
       if (value === matrix) {
         console.log(`Gano el jugador ${key}`);
+        guardarLeaderBoard(puntajejugador);
       }
     }
   }
