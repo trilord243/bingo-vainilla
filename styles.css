@@ -5,7 +5,7 @@
 }
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #f4f4f4;
+  background: linear-gradient(135deg, #e6e7ec 0%, #ffffff 100%);
   color: #333;
   display: flex;
   flex-direction: column;
@@ -14,64 +14,64 @@ body {
 }
 
 header {
-  background-color: #007bff; /* Color de fondo */
+  background-color: #007bff;
   color: white;
-  padding: 10px 0; /* Ajuste el padding según necesite */
+  padding: 10px 0;
   width: 100%;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: center; /* Centra los hijos horizontalmente */
-  align-items: flex-start; /* Alinea los hijos en la parte superior */
-  gap: 20px; /* Añade espacio entre los elementos */
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
 }
 aside {
-  /* Define la proporción de la barra lateral para puntajes */
   flex: 1;
-  max-width: 300px; /* Ajusta al ancho deseado para los puntajes */
+  max-width: 300px;
 }
 
 h1 {
-  font-size: 3rem; /* Tamaño grande para el título */
+  font-size: 3rem;
   margin: 0;
-  padding: 0.5em 0; /* Espaciado vertical */
-  font-weight: bold; /* Fuente en negrita */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra de texto para resaltar */
+  padding: 0.5em 0;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 main {
+  width: 527px;
   flex: 3;
   margin-right: 20px;
   margin: 10px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  flex-grow: 2; /* Permite que el main crezca para ocupar el espacio */
+  flex-grow: 2;
   margin-right: 20px;
 }
 h2 {
-  color: #007bff; /* Color que coincide con el header para la cohesión */
-  margin-bottom: 20px; /* Espacio después de los títulos de sección */
+  color: #007bff;
+  margin-bottom: 20px;
 }
 
 label {
-  display: block; /* Los labels ocupan toda la línea */
-  margin: 10px 0 5px; /* Espaciado antes y después de los labels */
+  display: block;
+  margin: 10px 0 5px;
 }
 
 button {
-  background-color: #007bff; /* Un color más vibrante */
+  background-color: #007bff;
   color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-size: 18px; /* Un tamaño de letra más prominente */
-  font-weight: 500; /* Un poco de grosor para la fuente */
+  font-size: 18px;
+  font-weight: 500;
 }
 
 button:hover {
@@ -79,11 +79,11 @@ button:hover {
 }
 input[type="text"],
 select {
-  width: 100%; /* Aprovecha todo el ancho disponible */
-  padding: 10px; /* Espaciado interno para facilidad de entrada */
-  margin-bottom: 20px; /* Espacio después de los campos */
-  border: 1px solid #ccc; /* Borde sutil */
-  border-radius: 4px; /* Bordes suavemente redondeados */
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 #formularioInicial {
@@ -101,26 +101,26 @@ select {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 800px; /* Ajusta al tamaño deseado */
+  max-width: 20000px;
   margin: 20px auto;
 }
 
 .carton {
-  border: 2px solid #007bff; /* Borde más definido */
-  border-radius: 10px; /* Esquinas más redondeadas */
+  border: 2px solid #007bff;
+  border-radius: 10px;
   padding: 20px;
-  margin: 20px 0; /* Espacio vertical para evitar que los cartones estén demasiado juntos */
-  background-color: #ffffff; /* Fondo blanco para los cartones */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada para dar profundidad */
-  transition: transform 0.3s ease; /* Efecto suave al interactuar */
+  margin: 20px 0;
+  background-color: #ffffff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .carton:hover {
-  transform: translateY(-5px); /* Levanta el cartón al pasar el mouse */
+  transform: translateY(-5px);
 }
 .grid-carton {
   display: grid;
-  gap: 15px; /* Espacio entre las celdas de la grilla */
+  gap: 15px;
 }
 
 .carton[data-tamano="3"] .grid-carton {
@@ -139,23 +139,38 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px; /* Ajuste de tamaño */
-  height: 60px; /* Ajuste de tamaño */
-  border: 1px solid #ddd; /* Borde sutil */
-  background-color: #f9f9f9; /* Fondo ligeramente gris para las celdas */
-  font-size: 1.2rem; /* Tamaño de fuente más grande */
-  border-radius: 5px; /* Esquinas redondeadas para las celdas */
-  transition: background-color 0.2s ease-in-out; /* Transición suave para el color de fondo */
+  width: 60px;
+  height: 60px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
 }
 /* Tabs */
 
 .tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
   padding: 10px 0;
-  margin-left: 50px;
 }
 
 .tab {
-  /* Estilos simplificados para un look más moderno */
+  background-color: #e9e9e9;
+  color: #007bff;
+  margin: 0;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  white-space: nowrap;
+}
+
+.tab {
   background-color: #e9e9e9;
   color: #007bff;
   margin: 0 5px;
@@ -164,23 +179,22 @@ select {
 
 .tab:hover {
   background-color: #d9d9d9;
-  transform: translateY(-2px); /* Efecto sutil al pasar el mouse */
+  transform: translateY(-2px);
 }
 
 .tab.active {
   background-color: #007bff;
   color: white;
   font-weight: bold;
-  transform: none; /* Anula el efecto de hover */
+  transform: none;
 }
 
-/* Estilos para la sección del cartón */
 #juego {
-  background-color: white; /* Fondo blanco para el contenido */
-  padding: 20px; /* Espaciado interno */
-  border-radius: 0 0 8px 8px; /* Bordes redondeados en la parte inferior */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
-  border-top: none; /* Elimina el borde superior para unirse visualmente con las tabs */
+  background-color: white;
+  padding: 20px;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-top: none;
 }
 
 .hidden {
@@ -188,18 +202,20 @@ select {
 }
 
 #numeroActual {
+  display: flex;
+
   margin-top: 50px;
   flex-direction: column;
-  align-items: center; /* Centra el contenido horizontalmente */
+  align-items: center;
   padding: 10px;
-  position: relative; /* O usa flexbox si es posible */
-  top: -50px; /* Ajusta según tu layout */
-  z-index: 10; /* Asegura que se muestre por encima del resto */
+  position: relative;
+  top: -50px;
+  z-index: 10;
   background-color: white;
 
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   order: -1;
 }
 
@@ -213,111 +229,117 @@ select {
 }
 
 .celda.marcado {
-  background-color: #add8e6; /* Color para celdas marcadas */
-  color: #333; /* Texto oscuro para mejor contraste */
-  font-weight: bold; /* Fuente en negrita para las celdas marcadas */
+  background-color: #add8e6;
+  color: #333;
+  font-weight: bold;
 }
 #puntajes {
-  width: 100%; /* Usa todo el espacio horizontal disponible */
-  max-width: 400px; /* Ajusta al tamaño deseado */
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
   padding: 20px;
-  font-size: 22px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 20px; /* Espacio a la izquierda */
+  background: #ffffff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc;
 }
+
 #puntajes h2 {
-  margin-bottom: 10px;
   color: #007bff;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #eee;
 }
+
 #puntajes p {
   color: #333;
-  padding: 5px 0; /* Más espaciado entre los puntajes */
+  padding: 10px 0;
+  margin: 0;
+  border-bottom: 1px solid #eee;
 }
+
 aside#puntajes {
-  flex-grow: 1; /* Permite que el aside crezca para ocupar el espacio */
-  width: 30%; /* Ancho del aside */
-  margin-left: 20px; /* Espacio a la izquierda del aside */
+  flex-grow: 1;
+  width: 30%;
+  margin-left: 20px;
   margin-left: 38px;
   margin-top: 64px;
 }
 #sacarNumero {
-  font-size: 1rem; /* Ajuste el tamaño de la fuente a un tamaño más adecuado */
-  padding: 10px 20px; /* Reducción del padding para hacer el botón más pequeño */
-  margin-top: 0; /* Ajusta el margen superior si es necesario */
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin-top: 0;
 }
 
 .grid-carton {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(60px, 1fr)
-  ); /* Adaptabilidad del grid */
-  gap: 15px; /* Espacio entre celdas */
-  justify-items: center; /* Centrar celdas horizontalmente */
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 15px;
+  justify-items: center;
 }
 .modal {
   display: none;
   position: fixed;
-  z-index: 2; /* Asegúrate de que el z-index sea suficientemente alto */
+  z-index: 2;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: black; /* Fondo negro */
+  background-color: black;
 }
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-  position: fixed; /* Fixed position */
-  top: 50%; /* Position the top edge of the element in the middle of the screen */
-  left: 50%; /* Position the left edge of the element in the middle of the screen */
-  transform: translate(
-    -50%,
-    -50%
-  ); /* Move the element back by half its own width and height to center it */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   padding: 20px;
   border-radius: 10px;
 
-  width: auto; /* Width can be auto, or any fixed size */
-  max-width: 600px; /* Maximum width to make sure it does not get too big */
-  text-align: center; /* Center text */
-  z-index: 1000; /* High z-index to make sure it is on top of other elements */
+  width: auto;
+  max-width: 600px;
+  text-align: center;
+  z-index: 1000;
 }
 
 .modal-text {
-  color: #fff; /* White text */
-  font-size: 2em; /* Big font size */
+  color: #fff;
+  font-size: 2em;
 }
 
 .modal-button {
-  background-color: #007bff; /* Blue */
+  background-color: #007bff;
   color: white;
   padding: 10px 20px;
   margin: 20px 0;
   border: none;
   cursor: pointer;
   font-size: 1em;
-  display: inline-block; /* For inline positioning */
-  border-radius: 5px; /* Rounded corners */
+  display: inline-block;
+  border-radius: 5px;
 }
 .modal-image {
-  max-width: 100%; /* This will make sure the image is responsive and does not overflow from its container */
-  max-height: 30vh; /* You can adjust this value to suit your needs */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Display block to make it responsive */
-  margin: 0 auto 20px; /* Center the image and add some margin below */
+  max-width: 100%;
+  max-height: 30vh;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
 }
 #sonidoContenedor {
   position: fixed;
@@ -333,4 +355,59 @@ aside#puntajes {
   transform: translateY(-50%) !important;
   max-height: 10vh !important;
   width: auto !important;
+}
+#puntajes p:last-child {
+  border-bottom: none;
+}
+
+#puntajes .jugador {
+  font-weight: bold;
+}
+#puntajes .puntos {
+  float: right;
+}
+
+#botonRegresar.mostrar {
+  display: block;
+}
+#botonRegresar {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.blue1 {
+  color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #formularioInicial,
+  #puntajes {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+
+  main,
+  aside {
+    width: 100%;
+    max-width: none;
+  }
+
+  aside#puntajes {
+    flex-grow: 1;
+    width: 80%;
+    margin-left: 20px;
+    margin-left: 38px;
+    margin-top: 64px;
+  }
 }

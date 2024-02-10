@@ -21,7 +21,10 @@ window.onload = function () {
     jugadores = jugadorInputs.map((input) => input.value);
     iniciarJuego(tamanoCarton, jugadores);
   });
-
+  const botonRegresar = document.getElementById("botonRegresar");
+  botonRegresar.addEventListener("click", function () {
+    window.location.reload();
+  });
   function generarCarton(tamano, indexCarton) {
     const numerosUsados = new Set();
     let cartonHTML = `<div class="carton" data-tamano="${tamano}" data-index="${indexCarton}"><div class="grid-carton">`;
@@ -69,7 +72,8 @@ window.onload = function () {
   function iniciarJuego(tamanoCarton, jugadores) {
     let cartonesHTML = [];
     let matricesCartones = [];
-
+    const botonRegresar = document.getElementById("botonRegresar");
+    botonRegresar.classList.remove("hidden");
     jugadores.forEach((jugador, index) => {
       let carton = generarCarton(tamanoCarton, index);
       cartonesHTML.push(carton.html);
@@ -199,7 +203,7 @@ window.onload = function () {
       if (cartonLleno) puntos += 5;
 
       // Acumular los puntajes en HTML
-      puntajesHTML += `<div>Jugador ${jugador}: ${puntos} puntos</div>`;
+      puntajesHTML += `<p><em class='blue1'>${jugador}</em>: ${puntos} puntos</p>`;
 
       puntajejugador[jugador] = puntos;
 
@@ -282,7 +286,6 @@ function encontrarGanador(puntajes) {
     }
   });
 
-  // Si solo hay un ganador, devuelva el nombre del jugador
   // Si hay múltiples ganadores, devuelva el array de nombres
   return ganadores.length === 1 ? ganadores[0] : ganadores;
 }
