@@ -304,3 +304,14 @@ function mostrarGanador(nombreJugador) {
     window.location.reload(); // Esto recargará la página
   };
 }
+document.getElementById("toggleSonido").addEventListener("click", function () {
+  var audio = document.getElementById("miAudio");
+
+  if (audio.paused) {
+    audio.play();
+    this.textContent = "🔇 Mute";
+  } else {
+    audio.pause();
+    this.textContent = "🔊 Habilitar Sonido";
+  }
+});

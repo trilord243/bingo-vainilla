@@ -57,7 +57,6 @@
         <section id="juego" class="hidden"></section>
       </main>
 
-      <!-- Estructura básica del modal -->
       <div id="modalGanador" class="modal">
         <div class="modal-content">
           <img
@@ -67,10 +66,18 @@
           />
           <p id="mensajeGanador" class="modal-text"></p>
           <button id="botonReiniciar" class="modal-button">
-            Iniciar juego
+            Reiniciar Juego
           </button>
         </div>
       </div>
+
+      <div id="sonidoContenedor" style="position: fixed; left: 0; top: 0">
+        <button id="toggleSonido">🔊 Habilitar Sonido</button>
+      </div>
+      <audio id="miAudio" loop>
+        <source src="./megalovania.mp3" type="audio/mp3" />
+        Tu navegador no soporta audio HTML5.
+      </audio>
 
       <aside id="puntajes"></aside>
     </div>

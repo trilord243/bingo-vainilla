@@ -319,3 +319,8 @@ aside#puntajes {
   display: block; /* Display block to make it responsive */
   margin: 0 auto 20px; /* Center the image and add some margin below */
 }
+#sonidoContenedor {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
