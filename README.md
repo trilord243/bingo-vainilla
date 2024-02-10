@@ -6,7 +6,7 @@
 
 Para empezar a jugar, simplemente visita la versión alojada en GitHub Pages. Registra los nombres de los 4 jugadores y empieza a jugar!
 
-- [Jugar Bingo]([URL_DE_GITHUB_PAGES](https://trilord243.github.io/bingo-vainilla/))
+- [Jugar Bingo]([https://trilord243.github.io/bingo-vainilla/])
 
 ## 📖 Descripción
 
