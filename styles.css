@@ -114,3 +114,7 @@ main {
 .celda.marcado {
   background-color: #ff0;
 }
+#puntajes {
+  margin-top: 20px;
+  text-align: center;
+}

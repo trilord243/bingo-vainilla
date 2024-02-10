@@ -2,6 +2,7 @@ window.onload = function () {
   let cartones = [];
   let jugadores = [];
   let puntajejugador = {};
+  let contador = 0;
 
   const formularioInicial = document.getElementById("formularioInicial");
   const tamanoCartonSelect = document.getElementById("tamanoCarton");
@@ -164,6 +165,7 @@ window.onload = function () {
 
   function verificarPuntos() {
     let puntajesHTML = "";
+    contador++;
 
     jugadores.forEach((jugador, index) => {
       const matriz = cartones[index].matriz;
@@ -199,6 +201,13 @@ window.onload = function () {
       puntajesHTML += `<div>Jugador ${jugador}: ${puntos} puntos</div>`;
 
       puntajejugador[jugador] = puntos;
+
+      if (contador === 25) {
+        const ganador = encontrarGanador(puntajejugador);
+        console.log(ganador);
+        guardarLeaderBoard(puntajejugador);
+        alert("Se termino el juego");
+      }
 
       if (matriz.length === 3) {
         mostrarGanor(puntajejugador, 17);
@@ -238,4 +247,42 @@ window.onload = function () {
   }
 
   controlesCarton.style.display = "none";
+  mostrarPuntajes();
 };
+
+function mostrarPuntajes() {
+  // Verificar si hay datos de puntajes en localStorage
+  const puntajesGuardados = localStorage.getItem("leaderBoard");
+  if (puntajesGuardados) {
+    // Convertir la cadena de localStorage a un objeto
+    const puntajes = JSON.parse(puntajesGuardados);
+
+    // Crear el HTML para los puntajes
+    const listaPuntajes = Object.entries(puntajes)
+      .map(([jugador, puntaje]) => {
+        return `<p>${jugador}: ${puntaje} puntos</p>`;
+      })
+      .join("");
+
+    // Actualizar el DOM
+    const divPuntajes = document.getElementById("puntajes");
+    divPuntajes.innerHTML = `<h2>Puntajes Anterior partida</h2>${listaPuntajes}`;
+  }
+}
+function encontrarGanador(puntajes) {
+  let maxPuntaje = -Infinity;
+  let ganadores = [];
+
+  Object.entries(puntajes).forEach(([jugador, puntaje]) => {
+    if (puntaje > maxPuntaje) {
+      maxPuntaje = puntaje;
+      ganadores = [jugador];
+    } else if (puntaje === maxPuntaje) {
+      ganadores.push(jugador);
+    }
+  });
+
+  // Si solo hay un ganador, devuelva el nombre del jugador
+  // Si hay múltiples ganadores, devuelva el array de nombres
+  return ganadores.length === 1 ? ganadores[0] : ganadores;
+}
