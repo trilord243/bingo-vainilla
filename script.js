@@ -89,6 +89,7 @@ window.onload = function () {
     updateActiveTab(0);
 
     document.getElementById("numeroActual").style.display = "block";
+    mostrarNumeroAleatorio();
   }
 
   function generarCarton(tamano, indexCarton) {
@@ -204,9 +205,8 @@ window.onload = function () {
 
       if (contador === 25) {
         const ganador = encontrarGanador(puntajejugador);
-        console.log(ganador);
         guardarLeaderBoard(puntajejugador);
-        alert("Se termino el juego");
+        mostrarGanador(ganador);
       }
 
       if (matriz.length === 3) {
@@ -226,7 +226,7 @@ window.onload = function () {
   function mostrarGanor(puntajejugador, matrix) {
     for (const [key, value] of Object.entries(puntajejugador)) {
       if (value === matrix) {
-        console.log(`Gano el jugador ${key}`);
+        mostrarGanador(key);
         guardarLeaderBoard(puntajejugador);
       }
     }
@@ -285,4 +285,22 @@ function encontrarGanador(puntajes) {
   // Si solo hay un ganador, devuelva el nombre del jugador
   // Si hay múltiples ganadores, devuelva el array de nombres
   return ganadores.length === 1 ? ganadores[0] : ganadores;
+}
+function mostrarGanador(nombreJugador) {
+  // Esconder "Número Actual"
+  document.getElementById("numeroActual").style.display = "none";
+
+  // Actualizar el contenido del modal con el nombre del ganador
+  const mensajeGanador = document.getElementById("mensajeGanador");
+  mensajeGanador.textContent = `¡Felicidades ${nombreJugador}! ganaste`;
+
+  // Mostrar el modal
+  const modalGanador = document.getElementById("modalGanador");
+  modalGanador.style.display = "block"; // or "flex" if you want to use flexbox alignment
+
+  // Reiniciar el juego al hacer click en "Iniciar juego"
+  const botonReiniciar = document.getElementById("botonReiniciar");
+  botonReiniciar.onclick = function () {
+    window.location.reload(); // Esto recargará la página
+  };
 }

@@ -10,51 +10,70 @@
     <header>
       <h1>Bingo Familiar</h1>
     </header>
-    <main>
-      <section id="configuracion">
-        <form id="formularioInicial">
-          <h2>Configuración del Juego</h2>
-          <div id="entradaJugadores">
-            <label for="jugador1">Nombre del Jugador 1:</label>
-            <input type="text" id="jugador1" name="jugador1" required />
-            <label for="jugador2">Nombre del Jugador 2:</label>
-            <input type="text" id="jugador2" name="jugador2" required />
+    <div class="container">
+      <main>
+        <section id="configuracion">
+          <form id="formularioInicial">
+            <h2>Configuración del Juego</h2>
+            <div id="entradaJugadores">
+              <label for="jugador1">Nombre del Jugador 1:</label>
+              <input type="text" id="jugador1" name="jugador1" required />
+              <label for="jugador2">Nombre del Jugador 2:</label>
+              <input type="text" id="jugador2" name="jugador2" required />
 
-            <label for="jugador3">Nombre del Jugador 3:</label>
-            <input type="text" id="jugador3" name="jugador3" required />
+              <label for="jugador3">Nombre del Jugador 3:</label>
+              <input type="text" id="jugador3" name="jugador3" required />
 
-            <label for="jugador4">Nombre del Jugador 4:</label>
-            <input type="text" id="jugador4" name="jugador4" required />
-          </div>
-          <div id="seleccionTamano">
-            <label for="tamanoCarton">Tamaño del Cartón:</label>
-            <select id="tamanoCarton" name="tamanoCarton">
-              <option value="3">3x3</option>
-              <option value="4">4x4</option>
-              <option value="5">5x5</option>
-            </select>
-          </div>
-          <button type="submit">Iniciar Juego</button>
-        </form>
-      </section>
+              <label for="jugador4">Nombre del Jugador 4:</label>
+              <input type="text" id="jugador4" name="jugador4" required />
+            </div>
+            <div id="seleccionTamano">
+              <label for="tamanoCarton">Tamaño del Cartón:</label>
+              <select id="tamanoCarton" name="tamanoCarton">
+                <option value="3">3x3</option>
+                <option value="4">4x4</option>
+                <option value="5">5x5</option>
+              </select>
+            </div>
+            <button type="submit">Iniciar Juego</button>
+          </form>
+        </section>
 
-      <section id="numeroActual">
-        <h2>Número Actual:</h2>
-        <p id="numeroMostrado">-</p>
-        <button id="sacarNumero">Sacar Número</button>
-      </section>
+        <section id="numeroActual">
+          <h2>Número Actual:</h2>
+          <p id="numeroMostrado">-</p>
+          <button id="sacarNumero">Sacar Número</button>
+        </section>
 
-      <div id="controlesCarton">
-        <nav class="tabs">
-          <button class="tab">Jugador 1</button>
-          <button class="tab">Jugador 2</button>
-          <button class="tab">Jugador 3</button>
-          <button class="tab">Jugador 4</button>
-        </nav>
+        <div id="controlesCarton">
+          <nav class="tabs">
+            <button class="tab">Jugador 1</button>
+            <button class="tab">Jugador 2</button>
+            <button class="tab">Jugador 3</button>
+            <button class="tab">Jugador 4</button>
+          </nav>
+        </div>
+
+        <section id="juego" class="hidden"></section>
+      </main>
+
+      <!-- Estructura básica del modal -->
+      <div id="modalGanador" class="modal">
+        <div class="modal-content">
+          <img
+            src="sans_s_face__high_resolution_render__by_axis_strike_d9udxh2-fullview.png"
+            alt="Ganador"
+            class="modal-image"
+          />
+          <p id="mensajeGanador" class="modal-text"></p>
+          <button id="botonReiniciar" class="modal-button">
+            Iniciar juego
+          </button>
+        </div>
       </div>
-      <div id="puntajes"></div>
-      <section id="juego" class="hidden"></section>
-    </main>
+
+      <aside id="puntajes"></aside>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
